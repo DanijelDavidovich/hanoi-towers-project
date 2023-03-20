@@ -5,11 +5,14 @@ import Number from "./components/number";
 import FullTowwer from "./components/FullTower";
 import Buttons from "./components/Buttons";
 import Towers from "./components/Towers";
+import MinimumSteps from "./components/MinimumSteps";
+import MovesNumber from "./components/MovesNumber";
 
 const Hanoi = () => {
   const [num, setNum] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
   const [discObject, setDiscObject] = useState("");
+  const [movesNumber, setMovesNumber] = useState(0);
 
   // First tower
   const numberOfDiscs = num;
@@ -39,8 +42,6 @@ const Hanoi = () => {
     });
   }
 
-  console.log(discObject);
-
   const startNewGameHandler = () => {
     setIsOpen(true);
   };
@@ -49,9 +50,18 @@ const Hanoi = () => {
     setIsOpen(false);
   };
 
+  const movesNumberHandler = () => {
+    setMovesNumber((prev) => ++prev);
+  };
+
+  const restartHandler = () => {
+    setMovesNumber(0);
+  };
+
   return (
     <div className={classes.background}>
       <h1 className={classes.heading}>Hanoi Towers</h1>
+
       {isOpen && (
         <Number
           resume={resumeGame}
@@ -60,7 +70,12 @@ const Hanoi = () => {
         />
       )}
       <div className={classes.structure}>
-        <Towers initialTower={tower} numberOfDiscs={numberOfDiscs} />
+        <Towers
+          initialTower={tower}
+          numberOfDiscs={numberOfDiscs}
+          movesNumberHandler={movesNumberHandler}
+          movesNumberRestart={restartHandler}
+        />
         {/* <div className={classes.towers}>
           <FullTowwer
             dragOverHandler={dragOverHandler}
@@ -79,6 +94,10 @@ const Hanoi = () => {
           />
         </div> */}
         <div className={classes.stand}></div>
+      </div>
+      <div className={classes.moves}>
+        <MinimumSteps number={num} />
+        <MovesNumber number={movesNumber} />
       </div>
       <Buttons newGameHandler={startNewGameHandler} />
     </div>

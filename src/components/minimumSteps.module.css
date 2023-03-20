@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.text {
+  color: #ffffff4d;
+  font-size: 1.3rem;
+}
+
+.number {
+  color: #f1fe66;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

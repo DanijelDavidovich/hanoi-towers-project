@@ -12,6 +12,9 @@ const Towers = (props) => {
 
   useEffect(() => {
     setTower1(props.initialTower);
+    setTower2([]);
+    setTower3([]);
+    props.movesNumberRestart();
   }, [props.numberOfDiscs]);
 
   const drop = (event) => {
@@ -30,7 +33,7 @@ const Towers = (props) => {
         tower2.length === 0 ||
         tower1[0]["discNumber"] < tower2[0]["discNumber"]
       ) {
-        console.log("aaa");
+        props.movesNumberHandler();
         setTower2([tower1[0], ...tower2]);
         setTower1((prev) => prev.slice(1));
       }
@@ -39,6 +42,7 @@ const Towers = (props) => {
         tower3.length === 0 ||
         tower1[0]["discNumber"] < tower3[0]["discNumber"]
       ) {
+        props.movesNumberHandler();
         setTower3([tower1[0], ...tower3]);
         setTower1((prev) => prev.slice(1));
       }
@@ -47,6 +51,7 @@ const Towers = (props) => {
         tower1.length === 0 ||
         tower2[0]["discNumber"] < tower1[0]["discNumber"]
       ) {
+        props.movesNumberHandler();
         console.log("aaa");
         setTower1([tower2[0], ...tower1]);
         setTower2((prev) => prev.slice(1));
@@ -56,6 +61,7 @@ const Towers = (props) => {
         tower3.length === 0 ||
         tower2[0]["discNumber"] < tower3[0]["discNumber"]
       ) {
+        props.movesNumberHandler();
         setTower3([tower2[0], ...tower3]);
         setTower2((prev) => prev.slice(1));
       }
@@ -64,6 +70,7 @@ const Towers = (props) => {
         tower1.length === 0 ||
         tower3[0]["discNumber"] < tower1[0]["discNumber"]
       ) {
+        props.movesNumberHandler();
         setTower1([tower3[0], ...tower1]);
         setTower3((prev) => prev.slice(1));
       }
@@ -72,6 +79,7 @@ const Towers = (props) => {
         tower2.length === 0 ||
         tower3[0]["discNumber"] < tower2[0]["discNumber"]
       ) {
+        props.movesNumberHandler();
         setTower2([tower3[0], ...tower2]);
         setTower3((prev) => prev.slice(1));
       }

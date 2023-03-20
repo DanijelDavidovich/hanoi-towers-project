@@ -62,3 +62,9 @@
   left: 50%;
   right: 50%;
 }
+
+.moves {
+  display: flex;
+  gap: 27rem;
+  margin-top: 3rem;
+}

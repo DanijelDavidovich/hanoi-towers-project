@@ -8,7 +8,6 @@ const Buttons = (props) => {
         Start new game!
       </button>
       <button className={classes.button}>Restart game</button>
-      <button className={classes.button}>Step back</button>
     </div>
   );
 };

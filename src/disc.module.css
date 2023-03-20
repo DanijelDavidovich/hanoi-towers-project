@@ -1,0 +1,9 @@
+.disc {
+  /* position: absolute; */
+  /* background-color: #ffff00; */
+  /* padding: 0.8rem 7rem; */
+  border-radius: 5px;
+  border: 2px solid #212529;
+  z-index: 900;
+  bottom: 0%;
+}

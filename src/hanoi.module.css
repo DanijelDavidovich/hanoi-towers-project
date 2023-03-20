@@ -1,0 +1,64 @@
+* {
+  background-color: #212529;
+  font-family: "Tilt Neon", cursive;
+}
+
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  color: #ffffff4d;
+  text-transform: uppercase;
+  margin-top: 5rem;
+}
+
+.structure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.stand {
+  background-color: #f1f3f5;
+  padding: 0.3rem 35rem;
+  border-radius: 5px;
+}
+
+.towers {
+  display: flex;
+  /* gap: 15rem; */
+}
+
+.fullTower {
+  width: min-content;
+}
+
+.towerAbove {
+  padding: 3rem 10rem;
+}
+
+.towerContent {
+  position: relative;
+}
+
+.tower {
+  background-color: #f1f3f5;
+  padding: 7rem 0.5rem;
+  margin: 0 10rem;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+}
+
+.discs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  right: 50%;
+}

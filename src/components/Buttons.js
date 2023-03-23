@@ -7,7 +7,7 @@ const Buttons = (props) => {
       <button className={classes.button} onClick={props.newGameHandler}>
         Start new game!
       </button>
-      <button className={classes.button}>Restart game</button>
+      <button className={classes.button} onClick={props.restartHandler}>Restart game</button>
     </div>
   );
 };

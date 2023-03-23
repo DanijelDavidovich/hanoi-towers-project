@@ -7,12 +7,14 @@ import Buttons from "./components/Buttons";
 import Towers from "./components/Towers";
 import MinimumSteps from "./components/MinimumSteps";
 import MovesNumber from "./components/MovesNumber";
+import WinPopup from "./components/WinPopup";
 
 const Hanoi = () => {
-  const [num, setNum] = useState(0);
+  const [num, setNum] = useState(-1);
   const [isOpen, setIsOpen] = useState(true);
-  const [discObject, setDiscObject] = useState("");
   const [movesNumber, setMovesNumber] = useState(0);
+  const [restart, setRestart] = useState(false);
+  const [winChecker, setWinChecker] = useState(false);
 
   // First tower
   const numberOfDiscs = num;
@@ -20,7 +22,6 @@ const Hanoi = () => {
 
   const dragStart = (event, num) => {
     event.dataTransfer.setData("disc", num);
-    console.log(num);
   };
 
   const dn = (num) => {
@@ -31,20 +32,25 @@ const Hanoi = () => {
     tower.push({
       discNumber: i + 1,
       towerNumber: 1,
+      // dragState: false,
       comp: (
         <Disc
           onC={dn}
           dragStart={dragStart}
           number={i + 1}
-          discObjectHandler={setDiscObject}
+          // discObjectHandler={setDiscObject}
+          // draggableState={dragStart}
         />
       ),
     });
   }
 
   const startNewGameHandler = () => {
+    setWinChecker(false);
     setIsOpen(true);
   };
+
+  console.log(winChecker);
 
   const resumeGame = () => {
     setIsOpen(false);
@@ -54,8 +60,20 @@ const Hanoi = () => {
     setMovesNumber((prev) => ++prev);
   };
 
-  const restartHandler = () => {
+  const restartMovesHandler = () => {
     setMovesNumber(0);
+  };
+
+  const restartHandler = () => {
+    setRestart(true);
+  };
+
+  const restartBackHandler = () => {
+    setRestart(false);
+  };
+
+  const winCheckerHandler = () => {
+    setWinChecker(true);
   };
 
   return (
@@ -67,6 +85,13 @@ const Hanoi = () => {
           resume={resumeGame}
           setNumberHandler={setNum}
           setIsOpenHandler={setIsOpen}
+          restartHandler={restartHandler}
+        />
+      )}
+      {winChecker && (
+        <WinPopup
+          newGameHandler={startNewGameHandler}
+          // restartHandler={restartHandler}
         />
       )}
       <div className={classes.structure}>
@@ -74,7 +99,12 @@ const Hanoi = () => {
           initialTower={tower}
           numberOfDiscs={numberOfDiscs}
           movesNumberHandler={movesNumberHandler}
-          movesNumberRestart={restartHandler}
+          movesNumberRestart={restartMovesHandler}
+          restartHandler={restartHandler}
+          restartBackHandler={restartBackHandler}
+          restart={restart}
+          winCheckerHandler={winCheckerHandler}
+          winCheck={winChecker}
         />
         {/* <div className={classes.towers}>
           <FullTowwer
@@ -99,7 +129,10 @@ const Hanoi = () => {
         <MinimumSteps number={num} />
         <MovesNumber number={movesNumber} />
       </div>
-      <Buttons newGameHandler={startNewGameHandler} />
+      <Buttons
+        newGameHandler={startNewGameHandler}
+        restartHandler={restartHandler}
+      />
     </div>
   );
 };

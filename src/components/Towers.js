@@ -8,14 +8,17 @@ const Towers = (props) => {
   const [tower1, setTower1] = useState([]);
   const [tower2, setTower2] = useState([]);
   const [tower3, setTower3] = useState([]);
-  const [towerInfo, setTowerInfo] = useState([]);
+  const [prevNumber, setPrevNumber] = useState(0);
+
+  // console.log(tower1[0]["dragState"]);
 
   useEffect(() => {
     setTower1(props.initialTower);
     setTower2([]);
     setTower3([]);
     props.movesNumberRestart();
-  }, [props.numberOfDiscs]);
+    props.restartBackHandler();
+  }, [props.numberOfDiscs, props.restart]);
 
   const drop = (event) => {
     setTower2([tower1[0], ...tower2]);
@@ -34,8 +37,10 @@ const Towers = (props) => {
         tower1[0]["discNumber"] < tower2[0]["discNumber"]
       ) {
         props.movesNumberHandler();
+        if (!(tower2.length === 0)) tower2[0].dragState = false;
         setTower2([tower1[0], ...tower2]);
         setTower1((prev) => prev.slice(1));
+        tower1[0].dragState = true;
       }
     } else if (tow1.length === 1 && tower == 3) {
       if (
@@ -86,6 +91,14 @@ const Towers = (props) => {
     }
   };
 
+  if (
+    tower2.length == props.numberOfDiscs ||
+    tower3.length == props.numberOfDiscs
+  ) {
+    props.winCheckerHandler();
+    props.restartHandler();
+  }
+
   // const dropOn1 = (event) => {
   //   const disc = event.dataTransfer.getData("disc");
   //   const tower = event.target.id;
@@ -108,7 +121,6 @@ const Towers = (props) => {
 
   const dragOverHandler = (event) => {
     event.preventDefault();
-    console.log("Drag over");
   };
 
   return (

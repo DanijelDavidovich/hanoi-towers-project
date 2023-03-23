@@ -1,7 +1,7 @@
-import classes from "./number.module.css";
+import classes from "./winPopup.module.css";
 import { useState } from "react";
 
-const Number = (props) => {
+const WinPopup = (props) => {
   const [error, setError] = useState(false);
   let enteredNum;
   const onChangeHandler = (event) => {
@@ -38,7 +38,19 @@ const Number = (props) => {
   return (
     <>
       <div className={classes.overlay} />
-      <form className={classes.box} onSubmit={formSubmitHandler}>
+      <div className={classes.box}>
+        <div className={classes.content}>
+          <p className={classes.text}>You made it!</p>
+          <p className={classes.heading}>congratulations</p>
+
+          <div className={classes.buttons}>
+            <button className={classes.button} onClick={props.newGameHandler}>
+              Start new game
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* <form  onSubmit={formSubmitHandler}>
         <h2 className={classes.heading}>Number of discs</h2>
         <p className={classes.text}>Enter a number between 2 and 7.</p>
         <input type="number" style={myStyle} onChange={onChangeHandler}></input>
@@ -53,9 +65,9 @@ const Number = (props) => {
             Resum game
           </button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
 
-export default Number;
+export default WinPopup;

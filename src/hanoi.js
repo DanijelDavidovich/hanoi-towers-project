@@ -35,6 +35,7 @@ const Hanoi = () => {
       // dragState: false,
       comp: (
         <Disc
+          key={i + 1}
           onC={dn}
           dragStart={dragStart}
           number={i + 1}

@@ -1,5 +1,6 @@
 import classes from "./number.module.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Number = (props) => {
   const [error, setError] = useState(false);
@@ -38,7 +39,8 @@ const Number = (props) => {
   return (
     <>
       <div className={classes.overlay} />
-      <form className={classes.box} onSubmit={formSubmitHandler}>
+
+      <motion.form className={classes.box} onSubmit={formSubmitHandler}>
         <h2 className={classes.heading}>Number of discs</h2>
         <p className={classes.text}>Enter a number between 2 and 7.</p>
         <input type="number" style={myStyle} onChange={onChangeHandler}></input>
@@ -53,7 +55,7 @@ const Number = (props) => {
             Resum game
           </button>
         </div>
-      </form>
+      </motion.form>
     </>
   );
 };

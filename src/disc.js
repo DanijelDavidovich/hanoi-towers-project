@@ -1,5 +1,5 @@
 import classes from "./disc.module.css";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 const DISC_CONFIGURATIONS = {
   colorArray: [
@@ -16,7 +16,9 @@ const DISC_CONFIGURATIONS = {
 const Disc = (props) => {
   const color = DISC_CONFIGURATIONS.colorArray[props.number - 1];
   return (
-    <div
+    <motion.div
+      initial={{ y: -200 }}
+      animate={{ y: 0 }}
       onClick={() => props.onC(props.number)}
       draggable
       key={props.number}
@@ -26,7 +28,7 @@ const Disc = (props) => {
         padding: `0.8rem ${props.number}rem`,
       }}
       className={classes.disc}
-    ></div>
+    ></motion.div>
   );
 };
 

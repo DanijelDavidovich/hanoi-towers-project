@@ -1,5 +1,6 @@
 import classes from "./winPopup.module.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const WinPopup = (props) => {
   const [error, setError] = useState(false);
@@ -41,7 +42,15 @@ const WinPopup = (props) => {
       <div className={classes.box}>
         <div className={classes.content}>
           <p className={classes.text}>You made it!</p>
-          <p className={classes.heading}>congratulations</p>
+          <motion.p
+            animate={{
+              scale: [1, 1.1],
+              transition: { repeatType: "mirror", repeat: Infinity },
+            }}
+            className={classes.heading}
+          >
+            congratulations
+          </motion.p>
 
           <div className={classes.buttons}>
             <button className={classes.button} onClick={props.newGameHandler}>
